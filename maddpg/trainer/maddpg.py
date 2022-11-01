@@ -1,6 +1,10 @@
 import numpy as np
 import random
-import tensorflow as tf
+# use backwards compatible tf
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 import maddpg.common.tf_util as U
 
 from maddpg.common.distributions import make_pdtype

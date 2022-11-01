@@ -1,7 +1,10 @@
 import collections
 import numpy as np
 import os
-import tensorflow as tf
+# use backwards compatible tf
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 def sum(x, axis=None, keepdims=False):
     return tf.reduce_sum(x, axis=None if axis is None else [axis], keep_dims = keepdims)
@@ -160,7 +163,7 @@ def get_session():
 
 def make_session(num_cpu):
     """Returns a session that will use <num_cpu> CPU's only"""
-    tf_config = tf.ConfigProto(
+    tf_config = tf.compat.v1.ConfigProto(
         inter_op_parallelism_threads=num_cpu,
         intra_op_parallelism_threads=num_cpu)
     return tf.Session(config=tf_config)
